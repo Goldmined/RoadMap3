@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3001;
 const User = require('./model/User')
+app.use(express.static('public'));
 
 app.get('/users', (req, res) => {
   res.json({
