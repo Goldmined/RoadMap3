@@ -234,7 +234,7 @@ const users = [
 const list = () => users;
 const getById = (id) =>
   users.find((user) => {
-    if (user.id === id) {
+    if (user.id == id) {
       return true;
     }
     return false;
