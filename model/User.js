@@ -229,7 +229,7 @@ const users = [
       bs: "target end-to-end models",
     },
   },
-];
+]
 
 const list = () => users;
 const getById = (id) =>
@@ -241,5 +241,5 @@ const getById = (id) =>
   });
 module.exports = {
   list,
-  getById,
+  getById
 };
