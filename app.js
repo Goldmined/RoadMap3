@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
 const PORT = 3001;
+const cors = require('cors');
 const User = require("./model/User");
 const Post = require("./model/Post");
 const Comment = require("./model/Comment");
 app.use(express.static("public"));
+
+
+// 
+app.use(cors());
 
 app.get("/users", (req, res) => {
   res.json({
