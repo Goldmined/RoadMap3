@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import MainLayout from "../../components/layout/Main";
 
 const PostPage = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const PostPage = () => {
   }, [post_id]);
   console.log(post, post_id);
   return (
-    <div className="container">
+    <MainLayout>
       {!!post && ( // if так пишется в JSX
         <div className="post">
           <h2>{post.title}</h2>
@@ -43,7 +44,7 @@ const PostPage = () => {
           );
         })}
       </div>
-    </div>
+    </MainLayout>
   );
 };
 export default PostPage;
