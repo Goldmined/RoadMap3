@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 const IndexPage = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -12,13 +12,17 @@ const IndexPage = () => {
   console.log(users);
   return (
     <div className="container">
-      <div className="users">
+      <div className="row">
         {users.map((user) => {
           return (
-            <div className = 'user' key = {user.id}>
-              <h3>{user.name}</h3>
-              <p>{user.email}</p>
-              <Link href ={`/users/${user.id}`}><a>follow</a></Link>
+            <div className="col-md-3" key={user.id}>
+              <div className="user">
+                <h3>{user.name}</h3>
+                <p>{user.email}</p>
+                <Link href={`/users/${user.id}`}>
+                  <a>follow</a>
+                </Link>
+              </div>
             </div>
           );
         })}

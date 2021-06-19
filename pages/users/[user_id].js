@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Link from "next/link"
+import Link from "next/link";
 
 const UserPage = () => {
   const router = useRouter();
@@ -32,13 +32,17 @@ const UserPage = () => {
           <p>{user.email}</p>
         </div>
       )}
-      <div className="items">
+      <div className="row">
         {posts.map((post) => {
           return (
-            <div className="item" key = {post.id}>
-              <h4>{post.title}</h4>
-              <p>{post.body}</p>
-              <Link href = {`/posts/${post.id}`}><a>Open</a></Link>
+            <div className="col-md-3" key={post.id}>
+              <div className="item">
+                <h4>{post.title}</h4>
+                <p>{post.body}</p>
+                <Link href={`/posts/${post.id}`}>
+                  <a>Open</a>
+                </Link>
+              </div>
             </div>
           );
         })}

@@ -31,12 +31,14 @@ const PostPage = () => {
           <p>{post.body}</p>
         </div>
       )}
-      <div className="items">
+      <div className="row">
         {comments.map((comment) => {
           return (
-            <div className="item" key = {comment.id}>
+            <div className="col-md-3" key = {comment.id}>
+            <div className="item">
               <h4>{comment.name}</h4>
               <p>{comment.body}</p>
+            </div>
             </div>
           );
         })}
@@ -46,4 +48,4 @@ const PostPage = () => {
 };
 export default PostPage;
 
-// открыть постман - 23 мая, 31:12 минута
+// открыть постман - 6 июня, 18-16
