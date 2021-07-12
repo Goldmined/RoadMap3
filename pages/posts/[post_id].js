@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ToastComment from "../../components/comment/Toast";
 import MainLayout from "../../components/layout/Main";
 
 const PostPage = () => {
@@ -35,11 +36,9 @@ const PostPage = () => {
       <div className="row">
         {comments.map((comment) => {
           return (
-            <div className="col-md-3" key = {comment.id}>
-            <div className="item">
-              <h4>{comment.name}</h4>
-              <p>{comment.body}</p>
-            </div>
+            <div className="col-md-8 offset-md-2" key = {comment.id}>
+              <ToastComment item={comment}/>
+            
             </div>
           );
         })}

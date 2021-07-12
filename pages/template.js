@@ -1,7 +1,8 @@
 import PostCard from "../components/card/Post";
+import ToastComment from "../components/comment/Toast";
 import MainLayout from "../components/layout/Main";
 import UserAvatar from "../components/user/Avatar";
-import { post,user } from "../data/mock";
+import { post, user, comment } from "../data/mock";
 
 const TemplatePage = () => {
   return (
@@ -16,13 +17,13 @@ const TemplatePage = () => {
       </div>
       <div className="row">
         <div className="col-md-3">
-          <UserAvatar item={user} url={`/users/${user.id}`}/>
+          <UserAvatar item={user} url={`/users/${user.id}`} />
         </div>
         <div className="col-md-3">
-          <UserAvatar item={user} url={`/users/${user.id}`}/>
+          <UserAvatar item={user} url={`/users/${user.id}`} />
         </div>
         <div className="col-md-3">
-          <UserAvatar item={user} url={`/users/${user.id}`}/>
+          <UserAvatar item={user} url={`/users/${user.id}`} />
         </div>
       </div>
       <div className="row g-5">
@@ -41,6 +42,9 @@ const TemplatePage = () => {
             version of the other highly repetitive body text used throughout.
             <p />
           </article>
+          <ToastComment item={comment}/>
+          <ToastComment item={comment}/>
+          <ToastComment item={comment}/>
           <nav className="blog-pagination" aria-label="Pagination">
             <a className="btn btn-outline-primary" href="#">
               Older
