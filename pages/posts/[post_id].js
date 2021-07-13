@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ArticleCard from "../../components/card/Article";
 import ToastComment from "../../components/comment/Toast";
 import MainLayout from "../../components/layout/Main";
 
@@ -28,10 +29,7 @@ const PostPage = () => {
   return (
     <MainLayout>
       {!!post && ( // if так пишется в JSX
-        <div className="post">
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </div>
+        <ArticleCard item={post}/>
       )}
       <div className="row">
         {comments.map((comment) => {

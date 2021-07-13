@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import MainLayout from "../../components/layout/Main";
 import PostCard from "../../components/card/Post";
+import UserAvatar from "../../components/user/Avatar";
 
 const UserPage = () => {
   const router = useRouter();
@@ -29,10 +30,8 @@ const UserPage = () => {
   return (
     <MainLayout>
       {!!user && ( // if так пишется в JSX
-        <div className="user">
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-        </div>
+      <UserAvatar item={user}/>
+        
       )}
       <div className="row">
         {posts.map((post) => {
