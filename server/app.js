@@ -4,55 +4,38 @@ const express = require("express");
 const app = express();
 const PORT = 3001;
 const cors = require("cors");
-const User = require("./model/mongo/User");
-const Post = require("./model/mongo/Post");
-const Comment = require("./model/mongo/Comment");
+const UserController = require("./controller/User");
+const PostController = require("./controller/Post");
+const CommentController = require("./controller/Comment");
+
 app.use(express.static("public"));
 
 //
 app.use(cors());
 
-app.get("/users", async (req, res) => {
-  res.json({
-    items: await User.find(),
-  });
-});
-
-app.get("/users/:id", async (req, res) => {
-  res.json({
-    item: await User.findOne({ id: req.params.id }),
-  });
-});
+app.get("/users", UserController.list);
+app.get("/users/:id", UserController.getById);
 
 // --------post--------
-app.get("/posts", async (req, res) => {
-  const criteria = {};
-  if (req.query.userId) {
-    criteria.userId = req.query.userId;
-  }
-  res.json({
-    items: await Post.find(criteria),
-  });
-});
-app.get("/posts/:id", async (req, res) => {
-  res.json({
-    item: await Post.findOne({ id: req.params.id }),
+app.get("/posts", PostController.list);
+app.get("/posts/:id", PostController.getById);
+
+//-----------comment-----------
+app.get("/comments", CommentController.list);
+app.get("/comments/:id", CommentController.getById);
+
+// мидл веар, промежуточное по
+app.use("*", (req, res) => {
+  res.status(404).json({
+    message: "404 Not Found",
   });
 });
 
-//-----------comment-----------
-app.get("/comments", async (req, res) => {
-  const criteria = {};
-  if (req.query.postId) {
-    criteria.postId = req.query.postId;
-  }
-  res.json({
-    items: await Comment.find(criteria),
-  });
-});
-app.get("/comments/:id", async (req, res) => {
-  res.json({
-    item: await Comment.findOne({ id: req.params.id }),
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message } = err;
+  console.log({ err });
+  res.status(statusCode).send({
+    message: statusCode === 500 ? "На сервере произошла ошибка" : message,
   });
 });
 
