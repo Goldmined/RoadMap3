@@ -23,7 +23,7 @@ app.get("/posts/:id", PostController.getById);
 //-----------comment-----------
 app.get("/comments", CommentController.list);
 app.get("/comments/:id", CommentController.getById);
-
+ 
 // мидл веар, промежуточное по
 app.use("*", (req, res) => {
   res.status(404).json({
@@ -42,3 +42,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server app listening at http://localhost:${PORT}`);
 });
+//05-54, q20july
