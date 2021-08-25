@@ -1,33 +1,138 @@
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import MainLayout from "../components/layout/Main";
-import UserAvatar from "../components/user/Avatar";
-const IndexPage = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:3001/users")
-      .then((res) => res.json())
-      .then((data) => {
-        // setUsers(data.items);
-        if (data.items) {
-          setUsers(data.items);
-        }
-      });
-  }, []);
-  console.log(users);
-  return (
-    <MainLayout>
-      <div className="row">
-        {users.map((user) => {
-          return (
-            <div className="col-md-3" key={user.id}>
-              <UserAvatar item={user} url={`/users/${user.id}`}/>
-            </div>
-          );
-        })}
-      </div>
-    </MainLayout>
-  );
-};
+import MovieLayout from "../components/layout/Movie"
+import EntityMovie from "../components/movie/Entity"
 
-export default IndexPage;
+const MoviesPage = () => {
+  return (
+    <MovieLayout>
+    <section className="section-long">
+      <div className="container">
+        <div className="section-pannel">
+          <div className="grid row">
+            <div className="col-md-10">
+              <form autoComplete="off">
+                <div className="row form-grid">
+                  <div className="col-sm-6 col-lg-3">
+                    <div className="input-view-flat input-group">
+                      <select className="form-control" name="genre">
+                        <option selected="true">genre</option>
+                        <option>action</option>
+                        <option>adventure</option>
+                        <option>comedy</option>
+                        <option>crime</option>
+                        <option>detective</option>
+                        <option>drama</option>
+                        <option>fantasy</option>
+                        <option>melodrama</option>
+                        <option>romance</option>
+                        <option>superhero</option>
+                        <option>supernatural</option>
+                        <option>thriller</option>
+                        <option>sport</option>
+                        <option>historical</option>
+                        <option>horror</option>
+                        <option>musical</option>
+                        <option>sci-fi</option>
+                        <option>war</option>
+                        <option>western</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-sm-6 col-lg-3">
+                    <div
+                      className="input-view-flat date input-group"
+                      data-toggle="datetimepicker"
+                      data-target="#release-year-field"
+                    >
+                      <input
+                        className="datetimepicker-input form-control"
+                        id="release-year-field"
+                        name="releaseYear"
+                        type="text"
+                        placeholder="release year"
+                        data-target="#release-year-field"
+                        data-date-format="Y"
+                      />
+                      <div className="input-group-append">
+                        <span className="input-group-text">
+                          <i className="fas fa-calendar-alt" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-6 col-lg-3">
+                    <div className="input-view-flat input-group">
+                      <select className="form-control" name="sortBy">
+                        <option selected="true">sort by</option>
+                        <option>name</option>
+                        <option>release year</option>
+                        <option>rating</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div className="col-md-2 my-md-auto d-flex">
+              <span className="info-title d-md-none mr-3">Select view:</span>
+              <ul className="ml-md-auto h5 list-inline">
+                <li className="list-inline-item">
+                  <a
+                    className="content-link transparent-link"
+                    href="movies-blocks.html"
+                  >
+                    <i className="fas fa-th" />
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a
+                    className="content-link transparent-link active"
+                    href="movies-list.html"
+                  >
+                    <i className="fas fa-th-list" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+        <EntityMovie/> 
+         <div className="section-bottom">
+          <div className="paginator">
+            <a className="paginator-item" href="#">
+              <i className="fas fa-chevron-left" />
+            </a>
+            <a className="paginator-item" href="#">
+              1
+            </a>
+            <span className="active paginator-item">2</span>
+            <a className="paginator-item" href="#">
+              3
+            </a>
+            <span className="paginator-item">...</span>
+            <a className="paginator-item" href="#">
+              10
+            </a>
+            <a className="paginator-item" href="#">
+              <i className="fas fa-chevron-right" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </MovieLayout>
+  
+  )
+}
+
+export default MoviesPage
+
+
+//27 июля , 42-42
