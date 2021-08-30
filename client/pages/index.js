@@ -1,7 +1,16 @@
 import MovieLayout from "../components/layout/Movie"
 import EntityMovie from "../components/movie/Entity"
+import { useEffect, useState } from "react";
 
 const MoviesPage = () => {
+  const [movies, setMovies] = useState([]);
+    useEffect(() => {
+      fetch("http://localhost:3001/movies")
+        .then((res) => res.json())
+        .then((data) => {
+          setMovies(data.items);
+        });
+    }, []);
   return (
     <MovieLayout>
     <section className="section-long">
@@ -95,14 +104,9 @@ const MoviesPage = () => {
             </div>
           </div>
         </div>
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
-        <EntityMovie/> 
+        {movies.map((movie)=>{
+          return <EntityMovie key={movie._id} movie={movie}/>
+        })}
          <div className="section-bottom">
           <div className="paginator">
             <a className="paginator-item" href="#">
