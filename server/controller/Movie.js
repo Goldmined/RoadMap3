@@ -1,10 +1,16 @@
 const Movie = require("../model/mongo/Movie");
+const MovieComment = require("../model/mongo/MovieComment");
+
 const list = async (req, res, next) => {
   try {
     const {skip=0,limit=10} = req.query
+    const {year, genre} = req.query;
     const criteria = {};
-    if (req.query.year) {
-      criteria.year = req.query.year;
+    if (year) {
+      criteria.year = year;
+    }
+    if (genre) {
+      criteria.genres = genre;
     }
     res.json({
       count: await Movie.countDocuments(criteria),
@@ -19,6 +25,7 @@ const getById = async (req, res, next) => {
   try {
     res.json({
       item: await Movie.findById(req.params.id),
+      comments: await MovieComment.find({movie_id:req.params.id})
     });
   } catch (error) {
     next(error);

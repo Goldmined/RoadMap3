@@ -1,26 +1,32 @@
+import Link from 'next/link'
+
 const EntityMovie = ({ movie }) => {
-  const { title, poster, imdb, runtime, plot, genres } = movie;
+  const { title, poster, imdb, runtime, plot, genres, _id } = movie;
   return (
     <article className="movie-line-entity">
       <div className="entity-poster" data-role="hover-wrap">
         <div className="embed-responsive embed-responsive-poster">
-          <img className="embed-responsive-item" src={poster} alt />
+          <img className="embed-responsive-item" src={poster} />
         </div>
       </div>
       <div className="entity-content">
         <h4 className="entity-title">
-          <a className="content-link" href="movie-info-sidebar-right.html">
+          <Link href={`/movies/${_id}`}>
+          <a className="content-link" >
             {title}
           </a>
+          </Link>
         </h4>
         <div className="entity-category">
-          {genres.map((genre,i) => {
+        {genres.map((genre,i) => {
             return (
-              <a className="content-link" href="movies-blocks.html" key={i}>
+              <Link href={`/?genre=${genre}`}>
+              <a className="content-link" key={i}>
                 {genre}
                 {i<genres.length-1 ? ", " : ""} 
                 {/* если 5 елементов, то генрес.ленз = 4, и это последний элемент после которого надо ставить запятую */}
               </a>
+              </Link>
             );
           })}
         </div>
