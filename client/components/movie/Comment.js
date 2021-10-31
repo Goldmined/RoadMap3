@@ -1,4 +1,3 @@
-import Link from "next/link";
 const CommentMovie = ({ comment }) => {
   const { name, date, text } = comment;
   return (

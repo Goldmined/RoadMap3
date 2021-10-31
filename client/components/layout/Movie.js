@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 const MovieLayout = ({children}) => {
   return (
@@ -10,7 +11,7 @@ const MovieLayout = ({children}) => {
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Memico - Cinema Bootstrap HTML5 Template</title>
+    <title>Cinema</title>
     <link href="/html/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link
       href="/html/fontawesome/css/fontawesome-all.css"
@@ -32,10 +33,12 @@ const MovieLayout = ({children}) => {
     <link href="/html/css/dot-icons.css" rel="stylesheet" type="text/css" />
     <link href="/html/css/theme.css" rel="stylesheet" type="text/css" />
     </Head>
+
     <header className="header header-horizontal header-view-pannel">
       <div className="container">
         <nav className="navbar">
-          <a className="navbar-brand" href="/html/">
+          <Link href="/">
+          <a className="navbar-brand" >
             <span className="logo-element">
               <span className="logo-tape">
                 <span
@@ -48,6 +51,7 @@ const MovieLayout = ({children}) => {
               </span>
             </span>
           </a>
+          </Link>
           <button className="navbar-toggler" type="button">
             <span className="th-dots-active-close th-dots th-bars">
               <span />
