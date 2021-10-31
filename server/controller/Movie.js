@@ -1,4 +1,5 @@
 const MovieComment = require("../model/mongo/MovieComment");
+const mongoose = require('mongoose');
 
 const Movie = require("../model/mongo/Movie");
 const list = async (req, res, next) => {
@@ -14,8 +15,10 @@ const list = async (req, res, next) => {
     }
     if (similar) {
       const movie = await Movie.findById(similar)
-      criteria.genres = {$all:movie.genres}
+      criteria.genres = {$all:movie.toObject().genres}
     }
+    // console.log(criteria)
+    criteria._id={$ne:mongoose.Types.ObjectId(similar)}
     res.json({
       count: await Movie.countDocuments(criteria),
       items: await Movie.find(criteria).skip(+skip).limit(+limit),
